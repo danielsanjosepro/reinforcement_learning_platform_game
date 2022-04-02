@@ -17,6 +17,7 @@ class ScreenStarter:
   def display(self, display_surface):
     display_surface.blit(self.textsurface1, self.pos1)
     display_surface.blit(self.textsurface2, self.pos2)
+    pygame.display.update()
 
 class GameOverScreen:
   def __init__(self, params) -> None:
@@ -33,6 +34,7 @@ class GameOverScreen:
   def display(self, display_surface):
     display_surface.blit(self.textsurface1, self.pos1)
     display_surface.blit(self.textsurface2, self.pos2)
+    pygame.display.update()
 
 class Score:
   def __init__(self, params) -> None:

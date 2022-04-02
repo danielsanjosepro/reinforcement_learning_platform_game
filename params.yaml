@@ -68,15 +68,16 @@ game:
     generation_offset: 500
 
 reinforcement_learning:
-  agent: 
+  e-greedy: 
     eps: 1
-    eps_decay: 0.99995
+    eps_decay: 0.9995
     eps_min: 0.2
-  experience:
+  experience_replay:
     capacity: 100000
     min_experience: 320
-  trainer:
+  train:
+    learning_rate: 0.0001
     batch_size: 32
-    num_of_sessions: 10
+    num_of_sessions: 5
     rate_target_dqn_update: 1000
     discounted_factor: 0.99

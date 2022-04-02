@@ -97,10 +97,11 @@ class Player(pygame.sprite.Sprite):
     self.max_num_jumps = params["player"]["max_num_jumps"]
     # used to avoid multiple collisions from the bottom side of a platform
     self.collided = False
-    self.num_lives = params["player"]["initial_hearts"]
+    self.initial_hearts = params["player"]["initial_hearts"]
+    self.num_lives = self.initial_hearts
     self.max_hearts = params["player"]["max_hearts"]
 
-  def restart(self):
+  def restart(self, restart_hearts=True):
     self.pos = vec(self.params["player"]["x"], self.params["player"]["y"])
     self.vel = vec(0, 0)
     self.acc = vec(0, self.params["physics"]["ay"])
@@ -110,6 +111,8 @@ class Player(pygame.sprite.Sprite):
     # to avoid double jumps beetween 2 framesPlatform
     self.max_num_jumps = self.params["player"]["max_num_jumps"]
     self.collided = False
+    if restart_hearts:
+      self.num_lives = self.initial_hearts
 
   def update_speed(self, pressed_keys, world) -> None:
     # FIX X VELOCITY
@@ -183,7 +186,7 @@ class Player(pygame.sprite.Sprite):
       if self.num_lives <= 0:
         return True
       else:
-        self.restart()
+        self.restart(restart_hearts=False)
     return False
 
   def update(self, world, pressed_keys) -> None:
@@ -220,4 +223,8 @@ class Reward():
       self.num_lives = player.num_lives
       return 5
     else:
-      return 1
+      # TODO THIS is just a test
+      if player.vel.x > 0:
+        return 1
+      else:
+        return 0.2
