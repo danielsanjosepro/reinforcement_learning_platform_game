@@ -1,5 +1,5 @@
 # Platform Game for an agent trained with Deep Q-Learning
-## This is a simple implementation of a platform game (similar to Mario) using pygame to try to implement an agent which aims to maximize its score.
+## This is a simple implementation of a platform game (similar to Mario) using pygame to try to implement an agent/AI which aims to maximize its score.
 
 Objectives of this project:
 - Have fun by creating a game
