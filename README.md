@@ -18,4 +18,4 @@ In this case the objective is to score the greatest possible score (hence surviv
 ### HERE IMAGE
 
 In order for the agent to win in this game we need to define the problem:
-1. Objective: Maximize the expected discounted reward  \bbox{white}{<img src="https://render.githubusercontent.com/render/math?math=R_0 = \sum_{k=0}^n \gamma^k r_k">}
+1. Objective: Maximize the expected discounted reward $ `R_0 = \sum_{k=0}^n \gamma^k r_k` $
