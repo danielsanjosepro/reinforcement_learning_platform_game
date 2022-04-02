@@ -47,6 +47,7 @@ The main loop algorithm is simple (from the second post of Jordi Torres):
 ## To do or improve:
 For the game:
 - Improve the physics (mainly the collision system, check collisions before displaying sprites)
+
 For the agent:
 - Make it work, solve crashing problem
 
