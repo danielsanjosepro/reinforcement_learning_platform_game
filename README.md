@@ -9,7 +9,7 @@ Objectives of this project:
 The user controls a blue square using the keyboard (left, right and up) to avoid enemies (in red). The player keeps running and accelerates as time advances.
 Goal of the game: survive as long as possible and get the greatest score.
 
-![Video of the game](media/gif.gif?raw=true "Playing the platformer")
+![game](https://user-images.githubusercontent.com/42489409/161382832-4a2da26d-2532-459f-9116-5c2deb7fe67a.gif)
 
 ## Agent (STILL IN DEVELOPMENT)
 In reinforcement learning an agent is an entity that interacts with the environment (in this case the game) and acts in it using a certain policy in order to fulfill a certain objective.
