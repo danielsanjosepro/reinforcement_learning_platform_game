@@ -1,5 +1,5 @@
 # Platform Game for an agent trained with Deep Q-Learning
-## This is a simple implementation of a platform game (similar to Mario) using pygame to try to implement an agent capable of maximizing the score of the game.
+## This is a simple implementation of a platform game (similar to Mario) using pygame to try to implement an agent which aims to maximize its score.
 
 Objectives of this project:
 - Have fun by creating a game
@@ -9,13 +9,13 @@ Objectives of this project:
 The user controls a blue square using the keyboard (left, right and up) to avoid enemies (in red). The player keeps running and accelerates as time advances.
 Goal of the game: survive as long as possible and get the greatest score.
 
-### HERE VIDEO NEEDED
+![game](https://user-images.githubusercontent.com/42489409/161382832-4a2da26d-2532-459f-9116-5c2deb7fe67a.gif)
 
 ## Agent (STILL IN DEVELOPMENT)
 In reinforcement learning an agent is an entity that interacts with the environment (in this case the game) and acts in it using a certain policy in order to fulfill a certain objective.
 In this case the objective is to score the greatest possible score (hence survive as long as possible)
 
-### HERE IMAGE
+![Agent Environment Picture](media/agent_env.webp?raw=true "Agent Environment RL Book")
 
 ### Problem description:
 
@@ -32,3 +32,9 @@ We are using DQN since the cardinality of the space of possible states is 256 to
 
 ### DQN Architecture
 % TODO
+
+## References:
+- Steve Brunton series on reinforcement learning: https://www.youtube.com/watch?v=0MNVhXEX9to&list=PLMrJAkhIeNNQe1JXNvaFvURxGY4gE9k74
+- Jordi Torres (Professor at the UPC in Barcelona) posts about DQNs: https://towardsdatascience.com/deep-q-network-dqn-i-bce08bdf2af
+- Dong, H., Dong, H., Ding, Z., Zhang, S., & Chang. (2020). Deep Reinforcement Learning. Springer Singapore.
+
