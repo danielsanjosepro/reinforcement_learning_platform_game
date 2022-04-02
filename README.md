@@ -32,3 +32,9 @@ We are using DQN since the cardinality of the space of possible states is 256 to
 
 ### DQN Architecture
 % TODO
+
+## "Resources":
+- Steve Brunton series on reinforcement learning: https://www.youtube.com/watch?v=0MNVhXEX9to&list=PLMrJAkhIeNNQe1JXNvaFvURxGY4gE9k74
+- Jordi Torres (Professor at UPC in Barcelone) posts about DQNs: https://towardsdatascience.com/deep-q-network-dqn-i-bce08bdf2af
+- Dong, H., Dong, H., Ding, Z., Zhang, S., & Chang. (2020). Deep Reinforcement Learning. Springer Singapore.
+
