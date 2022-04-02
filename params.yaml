@@ -1,0 +1,82 @@
+game:
+  screen:
+    color: [0, 0, 0]
+    width : 640
+    height: 480
+    font:
+      type: "Cave Story"
+      size:
+        large: 120
+        small: 50
+      color: [255, 255, 255]
+    score:
+      pos: [590, 50]
+      type: "Cave Story"
+      size: 30
+      color: [255, 255, 255]
+      update_rate: 60  # 1 point per x frames
+  physics:
+    fps: 30
+    ay: 1000  # pixels / s /s
+    vx: 120  # pixels / s
+    ax: 2  # pixels / s / s
+    friction: 1
+  player: 
+    color: [0, 0, 255] # BLUE
+    x: 50
+    y: 250
+    width: 20
+    height: 20
+    jumping_strength: 500 # pixels / s
+    speed: 200  # pixels / s
+    max_num_jumps: 2
+    initial_hearts: 2
+    max_hearts: 3
+  enemy:
+    color: [255, 0, 0]  # RED
+    width: 20
+    height: 40
+    dynamic:
+      speed: 20 # pixels / s
+      rate:  60 # after how many frames change direction
+    flying: 
+      speed: 10 # pixels / s
+      altitude: 300
+    generation_offset: 20
+  enemies:
+    num_static:  3
+    num_dynamic: 3
+    num_flying:  4
+  ground:
+    height: 40
+    color: [0, 255, 0] # GREEN
+  platform:
+    width: 40
+    height: 10
+    color: [0, 255, 0] # GREEN
+    num_platforms: 10
+    altitude: 400
+    generation_offset: 10
+  hole:
+    generation_offset: 20
+    width_min: 200
+    width_max: 500
+  heart:
+    height: 15
+    width: 15
+    num_of_hearts: 1
+    generation_offset: 500
+
+reinforcement_learning:
+  agent: 
+    eps: 1
+    eps_decay: 0.99995
+    eps_min: 0.2
+  experience:
+    capacity: 100000
+    min_experience: 320
+  trainer:
+    batch_size: 32
+    num_of_sessions: 10
+    rate_target_dqn_update: 1000
+    discounted_factor: 0.99
