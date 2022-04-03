@@ -114,7 +114,7 @@ class Player(pygame.sprite.Sprite):
     if restart_hearts:
       self.num_lives = self.initial_hearts
 
-  def update_speed(self, pressed_keys, world) -> None:
+  def update_speed(self, pressed_keys) -> None:
     # FIX X VELOCITY
     if pressed_keys[K_LEFT]:
       self.vel.x = - self.params["player"]["speed"]
@@ -122,33 +122,7 @@ class Player(pygame.sprite.Sprite):
       self.vel.x = + self.params["player"]["speed"]
     else:
       self.vel.x = 0
-    hitting = pygame.sprite.spritecollide(self, world, False)
-    # First deal with the player hitting any solid surface
-    if hitting:
-      if type(hitting[0]) == Ground:
-        in_a_hole = False
-        if len(hitting) > 1:
-          for i in range(1, len(hitting)):
-            if type(hitting[i]) == Hole and self.rect.left > hitting[i].rect.left \
-               and self.rect.right < hitting[i].rect.right:
-              in_a_hole = True
-        if not in_a_hole:
-          self.pos.y = hitting[0].rect.top + 1
-          self.num_jumps = 0  # allow jumping again since we hit the ground
-          self.vel.y = 0
-      elif type(hitting[0]) == Platform:
-        self.vel.y = 0
-        if self.rect.top > hitting[0].rect.top and not self.collided:
-          # Then we are hitting the from the bottom on the platform
-          self.pos.y = hitting[0].rect.bottom + self.params["player"]["height"]
-          self.vel.y = 0
-          self.collided = True
-        else:
-          self.pos.y = hitting[0].rect.top + 1
-          self.num_jumps = 0  # allow jumping again since we are on the platform
-          # self.vel.x += world.speed
-    else:
-      self.collided = False
+    # REMOVED IT FROM HERE
     # Now, check if it tries to jump and it is allowed
     if pressed_keys[K_UP] \
             and self.num_jumps < self.max_num_jumps \
@@ -158,14 +132,50 @@ class Player(pygame.sprite.Sprite):
       self.vel.y = - self.params["player"]["jumping_strength"]
       self.num_jumps += 1
       self.jump_key_was_pressed = True
-    elif not pressed_keys[K_UP]:
+    if not pressed_keys[K_UP]:
       self.jump_key_was_pressed = False
     self.vel.y += self.acc.y*self.dt - self.vel.y * \
         self.params["physics"]["friction"]*self.dt
 
-  def update_position(self):
+  def update_position(self, world):
+    # First deal with the player hitting any solid surface
     self.pos.x += self.vel.x * self.dt
     self.pos.y += self.vel.y * self.dt
+    self.rect.midbottom = self.pos
+
+    hitting = pygame.sprite.spritecollide(self, world, False)
+    if hitting:
+      if type(hitting[0]) == Ground:
+        in_a_hole = False
+        if len(hitting) > 1:
+          for i in range(1, len(hitting)):
+            if type(hitting[i]) == Hole and self.rect.left > hitting[i].rect.left \
+               and self.rect.right < hitting[i].rect.right:
+              in_a_hole = True
+
+        if not in_a_hole:
+          self.num_jumps = 0  # allow jumping again since we hit the ground
+          self.vel.y = 0
+          self.pos.x += self.vel.x * self.dt
+          self.pos.y = hitting[0].rect.top + 1
+        else:
+          self.pos.y += self.vel.y * self.dt
+
+      elif type(hitting[0]) == Platform:
+        self.vel.y = 0
+        if self.rect.top > hitting[0].rect.top and not self.collided:
+          # Then we are hitting the from the bottom on the platform
+          self.vel.y = 0
+          self.pos.y = hitting[0].rect.bottom + self.params["player"]["height"]
+          self.collided = True
+        else:
+          self.vel.y = 0
+          self.pos.y = hitting[0].rect.top + 1
+          self.num_jumps = 0  # allow jumping again since we are on the platform
+          # self.vel.x += world.speed
+    else:
+      self.collided = False
+
     # if self.pos.x-self.params["player"]["width"]/2 < 0:
     #   self.pos.x = self.params["player"]["width"]/2
     # if self.pos.x+self.params["player"]["width"]/2 > self.params["screen"]["width"]:
@@ -191,8 +201,8 @@ class Player(pygame.sprite.Sprite):
 
   def update(self, world, pressed_keys) -> None:
     # Update position
-    self.update_speed(pressed_keys, world)
-    self.update_position()
+    self.update_speed(pressed_keys)
+    self.update_position(world)
     self.rect.midbottom = self.pos
 
 
