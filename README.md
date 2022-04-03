@@ -46,10 +46,15 @@ The main loop algorithm is simple (from the second post of Jordi Torres):
 
 ## To do or improve:
 For the game:
-- Improve the physics (mainly the collision system, check collisions before displaying sprites)
+- <strike>Improve the physics (mainly the collision system, check collisions before displaying sprites)</strike>
+- Add more platform types, 
+- Add bonus to get more points
 
 For the agent:
 - Make it work, solve crashing problem
+- Research if it is as simple as I expected to solve (maybe I was overconfident with my skills in this topic...)
+- Feed multiple frames to the DQN for a better learning
+- Learn by imitation (quite hard)
 
 ## References:
 - Steve Brunton series on reinforcement learning: https://www.youtube.com/watch?v=0MNVhXEX9to&list=PLMrJAkhIeNNQe1JXNvaFvURxGY4gE9k74
